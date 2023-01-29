@@ -12,9 +12,6 @@ const routes: Routes = [
     path: "",  redirectTo: 'app/dashboard', pathMatch: 'full'
   },
   {
-    path: "**",  redirectTo: 'app/dashboard'
-  },
-  {
     path: "app",
     children: [
       {
@@ -36,6 +33,9 @@ const routes: Routes = [
   },
   {
     path: "home", component: HomeComponent
+  },
+  {
+    path: "**",  redirectTo: 'app/dashboard'
   }
 ];
 
