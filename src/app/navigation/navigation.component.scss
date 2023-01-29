@@ -1,0 +1,11 @@
+i {
+    color: #006C4C;
+}
+
+.active > i {
+    color: #FFFFFF;
+}
+
+.nav-item:has(h1 > .active) {
+    background-color: #006C4C;
+}
