@@ -8,13 +8,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AuthModule } from '@auth0/auth0-angular';
 import { NavigationComponent } from './navigation/navigation.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+import { AboutComponent } from './about/about.component';
+import { RedeemHistoryComponent } from './redeem-history/redeem-history.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    HomeComponent
+    DashboardComponent,
+    HomeComponent,
+    TransactionHistoryComponent,
+    AboutComponent,
+    RedeemHistoryComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
