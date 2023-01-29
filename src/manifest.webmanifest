@@ -3,7 +3,7 @@
   "short_name": "SSCR.BSCPE4.WasteSegregation",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
-  "display": "standalone",
+  "display": "fullscreen",
   "scope": "./sscr.bscpe4.waste-segregation/",
   "start_url": "./sscr.bscpe4.waste-segregation/",
   "icons": [
