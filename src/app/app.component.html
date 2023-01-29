@@ -1,9 +1,16 @@
-<header>
-  <app-header></app-header>
-</header>
-<nav>
-  <app-navigation></app-navigation>
-</nav>
-<main>
-  <router-outlet></router-outlet>
-</main>
+<div *ngIf="!(authService.user$ | async) as User; else loaded">
+  <app-home></app-home>
+</div>
+<ng-template #loaded>
+  <header>
+    <app-header></app-header>
+  </header>
+  <nav>
+    <app-navigation></app-navigation>
+  </nav>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</ng-template>
+
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>

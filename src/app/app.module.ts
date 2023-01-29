@@ -15,6 +15,9 @@ import { RedeemHistoryComponent } from './redeem-history/redeem-history.componen
 import { SettingsComponent } from './settings/settings.component';
 import { HeaderComponent } from './header/header.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
+import { HomeComponent } from './home/home.component';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -26,12 +29,15 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
     RedeemHistoryComponent,
     SettingsComponent,
     HeaderComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     BreadcrumbModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
     AuthModule.forRoot({
       domain: 'dev-r4ippv6ku3wmg522.us.auth0.com',
       clientId: 'oyt7LXPJK3CDNpXNLS3tWw77bBLochtI',
