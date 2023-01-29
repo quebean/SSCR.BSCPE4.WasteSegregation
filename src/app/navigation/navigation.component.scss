@@ -6,10 +6,9 @@ h1 {
     margin: 0;
 }
 
-.active > i {
-    color: #FFFFFF;
-}
-
-.nav-item:has(h1 > .active) {
+.active {
     background-color: #006C4C;
+    h1 > i {
+        color: #FFFFFF;
+    }
 }
