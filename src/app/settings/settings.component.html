@@ -1,5 +1,5 @@
 <div>
-    <div class="rounded bg-white m-4 text-center p-4">
+    <div class="rounded bg-white m-4 text-center p-4 shadow">
         <div *ngIf="authService.user$ | async as user">
             <h1>{{user.name}}</h1>
             <p>{{user.email}}</p>
