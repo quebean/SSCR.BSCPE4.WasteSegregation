@@ -1,7 +1,11 @@
-<div *ngIf="authService.user$ | async as user">
-    <h1>{{user.name}}</h1>
-    <h2>{{user.email}}</h2>
-</div>
-<div *ngIf="(authService.isAuthenticated$ | async) == true">
-    <button class="btn btn-danger" (click)="logout()">Logout</button>
+<div>
+    <div class="rounded bg-white m-4 text-center p-4">
+        <div *ngIf="authService.user$ | async as user">
+            <h1>{{user.name}}</h1>
+            <p>{{user.email}}</p>
+        </div>
+        <div *ngIf="(authService.isAuthenticated$ | async) == true">
+            <button class="btn btn-danger" (click)="logout()">Logout</button>
+        </div>
+    </div>
 </div>

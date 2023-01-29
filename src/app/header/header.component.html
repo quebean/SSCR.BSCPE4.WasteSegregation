@@ -1,4 +1,4 @@
-<div class="w-100 py-1 px-1 shadow d-flex">
+<div class="w-100 py-1 px-1 shadow d-flex bg-white mb-2">
     <ng-container *ngIf="(breadcrumbs$ | async) as breadcrumbs">
         <ng-container *ngIf="breadcrumbs.length > 0 && breadcrumbs[breadcrumbs.length-1].label">
             <h1 class="m-2">{{ breadcrumbs[breadcrumbs.length-1].label }}</h1>
