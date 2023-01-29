@@ -1,1 +1,7 @@
-<p>settings works!</p>
+<div *ngIf="authService.user$ | async as user">
+    <h1>{{user.name}}</h1>
+    <h2>{{user.email}}</h2>
+</div>
+<div *ngIf="(authService.isAuthenticated$ | async) == true">
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+</div>

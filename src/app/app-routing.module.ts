@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '@auth0/auth0-angular';
 import { AboutComponent } from './about/about.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component';
 import { RedeemHistoryComponent } from './redeem-history/redeem-history.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
@@ -13,26 +13,24 @@ const routes: Routes = [
   },
   {
     path: "app",
+    canActivateChild: [AuthGuard],
     children: [
       {
-        path: "dashboard", component: DashboardComponent
+        path: "dashboard", component: DashboardComponent, data: { breadcrumb: "Dashboard" }
       },
       {
-        path: "transactions", component: TransactionHistoryComponent
+        path: "transactions", component: TransactionHistoryComponent, data: { breadcrumb: "Transactions" }
       },
       {
-        path: "redeem-history", component: RedeemHistoryComponent
+        path: "redeem-history", component: RedeemHistoryComponent, data: { breadcrumb: "Redeem History" }
       },
       {
-        path: "settings", component: SettingsComponent
+        path: "settings", component: SettingsComponent, data: { breadcrumb: "Settings" }
       },
       {
-        path: "about", component: AboutComponent
+        path: "about", component: AboutComponent, data: { breadcrumb: "About" }
       }
     ]
-  },
-  {
-    path: "home", component: HomeComponent
   },
   {
     path: "**",  redirectTo: 'app/dashboard'
