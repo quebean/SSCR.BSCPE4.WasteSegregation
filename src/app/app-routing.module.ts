@@ -9,7 +9,13 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
 
 const routes: Routes = [
   {
-    path: "",
+    path: "",  redirectTo: 'app/dashboard', pathMatch: 'full'
+  },
+  {
+    path: "**",  redirectTo: 'app/dashboard'
+  },
+  {
+    path: "app",
     children: [
       {
         path: "dashboard", component: DashboardComponent
