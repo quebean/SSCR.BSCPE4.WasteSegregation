@@ -1,11 +1,18 @@
 <div>
     <div class="rounded bg-white m-4 text-center p-4 shadow">
         <div *ngIf="authService.user$ | async as user">
-            <h1>{{user.name}}</h1>
+            <h5>{{user.name}}</h5>
             <p>{{user.email}}</p>
         </div>
         <div *ngIf="(authService.isAuthenticated$ | async) == true">
-            <button class="btn btn-danger" (click)="logout()">Logout</button>
+            <button class="btn btn-secondary w-100" (click)="logout()">Logout</button>
         </div>
+
+        <form class="my-4">
+            <div class="form-group">
+                <input type="text" class=" mt-2 form-control" id="tagIdentifier" placeholder="Tag Identifier">
+            </div>
+            <button type="submit" class="btn btn-success w-100 mt-2">Enroll</button>
+        </form>
     </div>
 </div>
