@@ -1,6 +1,7 @@
 <div>
     <div class="rounded bg-white m-4 text-center p-4 shadow">
         <div *ngIf="authService.user$ | async as user">
+            <img [src]="user.picture" alt="User Profile Picture" class="rounded-circle img-fluid profile-picture">
             <h5>{{user.name}}</h5>
             <p>{{user.email}}</p>
         </div>
