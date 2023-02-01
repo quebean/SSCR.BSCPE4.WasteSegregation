@@ -27,13 +27,19 @@ export class RedeemHistoryComponent implements OnInit{
   ngOnInit(): void {
     this.authservice.user$.subscribe((profile) => {
       this.profile = profile;
+      
+      this.dataService.GetRedeemsBySubjectId(this.profile.sub).subscribe((redeems) => {
+        this.redeems = redeems;
+        console.log(redeems);
+      });
+
       this.dataService.GetUserBySubjectId(this.profile.sub).subscribe((user) => {
         this.user = user;
         this.redeemForm = this.formBuilder.group({
           amount: [1, [Validators.required, Validators.min(1), Validators.max(1000)]],
           description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]]
         })
-      })
+      });
     })
   }
 
@@ -46,10 +52,12 @@ export class RedeemHistoryComponent implements OnInit{
         description: this.redeemForm.value.description,
         amount: this.redeemForm.value.amount
       } 
-      this.dataService.CreateRedeem(newRedeem).subscribe(() => {
+      this.dataService.CreateRedeem(newRedeem).subscribe((redeem) => {
         this.user.rewardBalance = this.user.rewardBalance - newRedeem.amount;
+        this.redeems.unshift(redeem);
         this.spinner.hide();
       })
     }
   }
+  
 }

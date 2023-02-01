@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     ReactiveFormsModule,
+    QRCodeModule,
     AuthModule.forRoot({
       domain: 'dev-r4ippv6ku3wmg522.us.auth0.com',
       clientId: 'oyt7LXPJK3CDNpXNLS3tWw77bBLochtI',

@@ -7,14 +7,36 @@
     <button class="btn btn-sm btn-success" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Redeem</button>
 </div>
 
-<div class="m-4">
-    <div class="rounded bg-white mb-2 text-center p-2 shadow"> 
-        <div class="d-flex justify-content-between px-2">
-            <span class="redeemPoints">20 Points</span>
-            <span class="redeemDates">Jan 20 2023 10:20 PM</span>
-        </div>
-    </div>
+<div style="overflow: scroll; height: 500px;">
+    <ng-container *ngIf="redeems && redeems.length > 0; else noredeems">
+        <ng-container *ngFor="let redeem of redeems">
+            <div class="m-2 mx-4">
+                <div class="rounded bg-white p-2 shadow"> 
+                    <div class="d-flex justify-content-between px-2">
+                        <div>
+                            <span class="d-block redeemPoints">{{redeem.amount | currency:'PHP':'symbol'}}</span>
+                            <span class="d-block redeemDates">{{redeem.createdAt | date : 'medium' }}</span>
+                            <span class="d-block">{{redeem.description}}</span>
+                        </div>
+                        <div>
+                            <qrcode [qrdata]="'{{redeem._id}}'" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
 </div>
+
+<ng-template #noredeems>
+    <div class="m-2 mx-4">
+        <div class="rounded bg-white text-center p-2 shadow">
+            <h1>No Redeems</h1>
+        </div>
+    </div>        
+</ng-template>
 
 <!-- Modal -->
 <ng-container *ngIf="user">
@@ -72,7 +94,7 @@
                     </div>
                     <hr>
                     <div class="modal-footer p-0">
-                        <button type="submit" class="btn btn-success w-100" data-bs-dismiss="modal">Redeem</button>
+                        <button type="submit" [disabled]="!redeemForm.valid || !redeemForm.dirty" class="btn btn-success w-100" data-bs-dismiss="modal">Redeem</button>
                         <button type="button" class="btn btn-outline-secondary w-100" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
