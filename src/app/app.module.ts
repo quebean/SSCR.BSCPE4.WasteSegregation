@@ -18,6 +18,8 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,10 +36,12 @@ import { NgxSpinnerModule } from "ngx-spinner";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     NgbModule,
     BreadcrumbModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    ReactiveFormsModule,
     AuthModule.forRoot({
       domain: 'dev-r4ippv6ku3wmg522.us.auth0.com',
       clientId: 'oyt7LXPJK3CDNpXNLS3tWw77bBLochtI',

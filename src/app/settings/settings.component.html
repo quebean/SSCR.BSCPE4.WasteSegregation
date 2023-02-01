@@ -1,19 +1,50 @@
 <div>
     <div class="rounded bg-white m-4 text-center p-4 shadow">
-        <div *ngIf="authService.user$ | async as user">
-            <img [src]="user.picture" alt="User Profile Picture" class="rounded-circle img-fluid profile-picture">
-            <h5>{{user.name}}</h5>
-            <p>{{user.email}}</p>
+        <div *ngIf="profile">
+            <ng-container *ngIf="profile.picture; else noprofileimg">
+                <img [src]="profile.picture" alt="User Profile Picture" class="rounded-circle img-fluid profile-picture w-50">
+            </ng-container>
+            <ng-template #noprofileimg>
+                <img src="../../assets/default-profile-image.jpg" alt="User Profile Picture" class="rounded-circle img-fluid profile-picture w-50">
+            </ng-template>
+            <h5>{{profile.name}}</h5>
+            <p>{{profile.email}}</p>
         </div>
         <div *ngIf="(authService.isAuthenticated$ | async) == true">
-            <button class="btn btn-secondary w-100" (click)="logout()">Logout</button>
+            <button class="btn btn-sm w-25 btn-outline-dark" (click)="logout()">Logout</button>
         </div>
-
-        <form class="my-4">
-            <div class="form-group">
-                <input type="text" class=" mt-2 form-control" id="tagIdentifier" placeholder="Tag Identifier">
+        <hr>
+        <ng-container *ngIf="user == null; else enrolled">
+            <form novalidate (ngSubmit)="submitForm()" [formGroup]="userForm" class="my-4">
+                <div class="form-group my-2">
+                    <label for="tagId" style="font-weight: bold;" class="form-label">Enroll your tag to this Account.</label>
+                    <input 
+                        type="text" 
+                        class=" mt-2 form-control is-invalid" 
+                        id="tagId" 
+                        placeholder="Tag Identifier"
+                        formControlName="tagId"
+                        [ngClass]="{'is-invalid': (userForm.get('tagId')?.touched ||
+                                                    userForm.get('tagId')?.dirty) &&
+                                                    !userForm.get('tagId')?.valid}">
+                    <span class="invalid-feedback">
+                        <span *ngIf="userForm.get('tagId')?.errors?.['required']">
+                            Tag Identifier is Required.
+                        </span>
+                        <span *ngIf="userForm.get('tagId')?.errors?.['pattern']">
+                            Tag is not valid.
+                        </span>
+                    </span>
+                </div>
+                
+                <button type="submit" class="btn btn-sm w-25 btn-outline-success my-2">Enroll</button>
+            </form>
+        </ng-container>
+        <ng-template #enrolled>
+            <div class="my-2">
+                <h1 class="text-success" style="font-size: 50px; font-weight: bold;"><i class="bi bi-file-check"></i></h1>
+                <p>Account is Enrolled</p>
             </div>
-            <button type="submit" class="btn btn-success w-100 mt-2">Enroll</button>
-        </form>
+        </ng-template>
     </div>
 </div>
