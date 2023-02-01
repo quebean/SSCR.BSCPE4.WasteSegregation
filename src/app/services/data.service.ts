@@ -8,7 +8,8 @@ import { Redeem } from '../models/redeem.model';
 @Injectable({providedIn: 'root'})
 export class DataService {
 
-    apiBaseUrl = 'http://localhost/api';
+    // apiBaseUrl = 'http://localhost/api';
+    apiBaseUrl = 'https://sscr-bscpe4-wastesegregation.onrender.com/api';
 
     constructor(private httpClient: HttpClient) { }
     
