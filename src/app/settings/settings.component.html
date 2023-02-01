@@ -11,9 +11,9 @@
             <p>{{profile.email}}</p>
         </div>
         <div *ngIf="(authService.isAuthenticated$ | async) == true">
-            <button class="btn btn-sm w-25 btn-outline-dark" (click)="logout()">Logout</button>
+            <button class="btn btn-sm w-25 btn-outline-danger" (click)="logout()">Logout</button>
         </div>
-        <hr>
+        <hr class="text-success">
         <ng-container *ngIf="user == null; else enrolled">
             <form novalidate (ngSubmit)="submitForm()" [formGroup]="userForm" class="my-4">
                 <div class="form-group my-2">

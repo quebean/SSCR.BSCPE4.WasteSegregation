@@ -22,14 +22,14 @@ export class DataService {
     }
 
     GetTransactionsByTagId(tagId: string): Observable<Transaction> {
-        return this.httpClient.post<Transaction>(`${this.apiBaseUrl}/user/GetTransactionsByTagId`, {tagId});
+        return this.httpClient.post<Transaction>(`${this.apiBaseUrl}/transaction/GetTransactionsByTagId`, {tagId});
     }
 
     CreateRedeem(redeem: Redeem): Observable<Redeem> {
-        return this.httpClient.post<Redeem>(`${this.apiBaseUrl}/user/CreateRedeem`, redeem);
+        return this.httpClient.post<Redeem>(`${this.apiBaseUrl}/redeem/CreateRedeem`, redeem);
     }
 
-    GetRedeemsBySubjectId(subjectId: string): Observable<Redeem> {
-        return this.httpClient.post<Redeem>(`${this.apiBaseUrl}/user/GetRedeemsBySubjectId`, {subjectId});
+    GetRedeemsBySubjectId(subjectId: string): Observable<Redeem[]> {
+        return this.httpClient.post<Redeem[]>(`${this.apiBaseUrl}/redeem/GetRedeemsBySubjectId`, {subjectId});
     }
 }

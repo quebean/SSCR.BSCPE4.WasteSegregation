@@ -12,7 +12,7 @@ import { DataService } from "../services/data.service";
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit{
-  profile!: any;
+  profile: any;
   user: User | null = null;
   userForm!: FormGroup;
   
@@ -21,7 +21,7 @@ export class SettingsComponent implements OnInit{
     public authService: AuthService,
     private dataService: DataService,
     private formBuilder: FormBuilder,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
   ) {}
 
   ngOnInit(): void {
@@ -31,11 +31,9 @@ export class SettingsComponent implements OnInit{
     });
     this.authService.user$.subscribe((profile) => {
       this.profile = profile;
-      if (profile?.sub) {
-        this.dataService.GetUserBySubjectId(profile.sub).subscribe((user) => {
+        this.dataService.GetUserBySubjectId(this.profile.sub).subscribe((user) => {
             this.user = user;
         })
-      }
       this.spinner.hide();
     })
   }
