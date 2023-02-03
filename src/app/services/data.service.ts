@@ -9,7 +9,7 @@ import { Redeem } from '../models/redeem.model';
 export class DataService {
 
     // apiBaseUrl = 'http://localhost/api';
-    apiBaseUrl = 'https://sscr-bscpe-4-waste-segregation-api.vercel.app/api';
+    apiBaseUrl = 'https://sscr-bscpe4-wastesegregation.onrender.com/api';
 
     constructor(private httpClient: HttpClient) { }
     
