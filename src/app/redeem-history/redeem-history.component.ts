@@ -30,13 +30,12 @@ export class RedeemHistoryComponent implements OnInit{
       
       this.dataService.GetRedeemsBySubjectId(this.profile.sub).subscribe((redeems) => {
         this.redeems = redeems;
-        console.log(redeems);
       });
 
       this.dataService.GetUserBySubjectId(this.profile.sub).subscribe((user) => {
         this.user = user;
         this.redeemForm = this.formBuilder.group({
-          amount: [1, [Validators.required, Validators.min(1), Validators.max(1000)]],
+          amount: [1, [Validators.required, Validators.min(1), Validators.max(this.user.rewardBalance)]],
           description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]]
         })
       });
@@ -46,7 +45,6 @@ export class RedeemHistoryComponent implements OnInit{
   submitForm() {
     this.spinner.show();
     if(this.user && this.redeemForm.valid){
-      console.log(this.redeemForm.value);
       let newRedeem: Redeem = {
         subjectId: this.profile.sub,
         description: this.redeemForm.value.description,
