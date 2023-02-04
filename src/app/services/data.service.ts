@@ -9,7 +9,7 @@ import { Redeem } from '../models/redeem.model';
 export class DataService {
 
     // apiBaseUrl = 'http://localhost/api';
-    apiBaseUrl = 'https://sscr-bscpe4-wastesegregation.onrender.com/api';
+    apiBaseUrl = 'https://kejatoritestappservice.azurewebsites.net/api';
 
     constructor(private httpClient: HttpClient) { }
     
