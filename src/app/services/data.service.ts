@@ -21,8 +21,8 @@ export class DataService {
         return this.httpClient.post<User>(`${this.apiBaseUrl}/user/GetUserBySubjectId`, {subjectId});
     }
 
-    GetTransactionsByTagId(tagId: string): Observable<Transaction> {
-        return this.httpClient.post<Transaction>(`${this.apiBaseUrl}/transaction/GetTransactionsByTagId`, {tagId});
+    GetTransactionsByTagId(tagId: string): Observable<Transaction[]> {
+        return this.httpClient.post<Transaction[]>(`${this.apiBaseUrl}/transaction/GetTransactionsByTagId`, {tagId});
     }
 
     CreateRedeem(redeem: Redeem): Observable<Redeem> {

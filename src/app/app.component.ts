@@ -1,8 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AuthService } from '@auth0/auth0-angular';
-import { DOCUMENT } from '@angular/common';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +10,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class AppComponent {
 
   constructor(
-    public authService: AuthService) {
+    public authService: AuthService,
+  ) {
+    
   }
   
 }
