@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { User } from '../models/user.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Transaction } from '../models/transaction.model';
 import { Redeem } from '../models/redeem.model';
+import { AuthService } from '@auth0/auth0-angular';
+import { User } from '../models/user.model';
 
 @Injectable({providedIn: 'root'})
 export class DataService {
 
-    // apiBaseUrl = 'http://localhost/api';
-    apiBaseUrl = 'https://kejatoritestappservice.azurewebsites.net/api';
+    apiBaseUrl = 'http://localhost/api';
+    // apiBaseUrl = 'https://kejatoritestappservice.azurewebsites.net/api';
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, private authService: AuthService) { }
     
     CreateUser(user: User): Observable<User> {
         return this.httpClient.post<User>(`${this.apiBaseUrl}/user/CreateUser`, user);
@@ -31,5 +32,23 @@ export class DataService {
 
     GetRedeemsBySubjectId(subjectId: string): Observable<Redeem[]> {
         return this.httpClient.post<Redeem[]>(`${this.apiBaseUrl}/redeem/GetRedeemsBySubjectId`, {subjectId});
+    }
+
+    private userSubject = new BehaviorSubject<User|null>(null);
+    user$ = this.userSubject.asObservable();
+
+    initUser() {
+        this.authService.user$.subscribe(profile => {
+            this.GetUserBySubjectId(profile?.sub!).subscribe(user => {
+                console.log(user);
+                console.log(profile);
+                
+                this.userSubject.next(user);
+            })
+        })
+    }
+
+    getUser(): Observable<any> {
+        return this.user$
     }
 }

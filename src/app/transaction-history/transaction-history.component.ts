@@ -25,7 +25,7 @@ export class TransactionHistoryComponent implements OnInit {
       this.profile = profile?.sub;
       this.dataService.GetUserBySubjectId(this.profile).subscribe(user => {
         this.user = user;
-        this.dataService.GetTransactionsByTagId(this.user._id).subscribe(transactions => {
+        this.dataService.GetTransactionsByTagId(this.user.tagId).subscribe(transactions => {
           this.transactions = transactions;
         })
       })

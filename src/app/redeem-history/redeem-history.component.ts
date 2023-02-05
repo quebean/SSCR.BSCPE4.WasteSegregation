@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Redeem } from '../models/redeem.model';
@@ -23,25 +22,19 @@ export class RedeemHistoryComponent implements OnInit{
     private dataService: DataService,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
-    private router: Router
-  ) { }
+  ) {
+    this.dataService.getUser().subscribe(user => this.user = user);
+    this.authservice.user$.subscribe(profile => this.profile = profile);
+  }
 
   ngOnInit(): void {
-    this.authservice.user$.subscribe((profile) => {
-      this.profile = profile;
-      
-      this.dataService.GetUserBySubjectId(this.profile.sub).subscribe((user) => {
-        this.user = user;
-        this.redeemForm = this.formBuilder.group({
-          amount: [1, [Validators.required, Validators.min(1), Validators.max(this.user.rewardBalance)]],
-          description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]]
-        })
-      });
-
-      this.dataService.GetRedeemsBySubjectId(this.profile.sub).subscribe((redeems) => {
-        this.redeems = redeems;
-      });
-      
+    this.dataService.initUser()
+    this.redeemForm = this.formBuilder.group({
+        amount: [1, [Validators.required, Validators.min(1), Validators.max(this.user.rewardBalance)]],
+        description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]]
+      })
+    this.dataService.GetRedeemsBySubjectId(this.user.subjectId).subscribe(redeems => {
+      this.redeems = redeems
     })
   }
 
@@ -60,5 +53,4 @@ export class RedeemHistoryComponent implements OnInit{
       })
     }
   }
-  
 }

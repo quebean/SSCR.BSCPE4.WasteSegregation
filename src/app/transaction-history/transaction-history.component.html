@@ -1,8 +1,8 @@
 <ng-container *ngIf="(transactions && transactions.length > 0); else notransactions">
-    <div class="my-4 mx-2">
-        <table class="table table-light table-striped">
+    <div class="my-4 mx-2 bg-white">
+        <table class="table table-striped">
             <thead>
-              <tr class="text-success">
+              <tr class="text-success text-center">
                 <th scope="col">Points</th>
                 <th scope="col">Metal</th>
                 <th scope="col">Plastic</th>
@@ -11,12 +11,12 @@
               </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let transaction of transactions">
-                    <td>{{(transaction.metal * .25)+(transaction.plastic * .15)+(transaction.paper * .05)}}.</td>
+                <tr class="text-center" *ngFor="let transaction of transactions">
+                    <td>{{((transaction.metal * .25)+(transaction.plastic * .15)+(transaction.paper * .05)) | currency:'PHP':'symbol'}}</td>
                     <td>{{transaction.metal}}</td>
                     <td>{{transaction.plastic}}</td>
                     <td>{{transaction.paper}}</td>
-                    <td>{{transaction.createdAt}}</td>
+                    <td>{{transaction.createdAt | date: 'medium'}}</td>
                   </tr>
             </tbody>
           </table>
