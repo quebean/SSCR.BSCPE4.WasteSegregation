@@ -28,13 +28,15 @@ export class RedeemHistoryComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.dataService.initUser()
-    this.redeemForm = this.formBuilder.group({
+    this.dataService.getUser().subscribe(user => {
+      this.user = user;
+      this.redeemForm = this.formBuilder.group({
         amount: [1, [Validators.required, Validators.min(1), Validators.max(this.user.rewardBalance)]],
         description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]]
       })
-    this.dataService.GetRedeemsBySubjectId(this.user.subjectId).subscribe(redeems => {
-      this.redeems = redeems
+      this.dataService.GetRedeemsBySubjectId(this.user.subjectId).subscribe(redeems => {
+        this.redeems = redeems
+      })
     })
   }
 
