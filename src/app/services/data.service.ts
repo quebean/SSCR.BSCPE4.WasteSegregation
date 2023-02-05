@@ -9,8 +9,8 @@ import { User } from '../models/user.model';
 @Injectable({providedIn: 'root'})
 export class DataService {
 
-    apiBaseUrl = 'http://localhost/api';
-    // apiBaseUrl = 'https://kejatoritestappservice.azurewebsites.net/api';
+    // apiBaseUrl = 'http://localhost/api';
+    apiBaseUrl = 'https://kejatoritestappservice.azurewebsites.net/api';
 
     constructor(private httpClient: HttpClient, private authService: AuthService) { }
     
