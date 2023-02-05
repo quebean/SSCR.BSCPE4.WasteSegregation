@@ -40,9 +40,6 @@ export class DataService {
     initUser() {
         this.authService.user$.subscribe(profile => {
             this.GetUserBySubjectId(profile?.sub!).subscribe(user => {
-                console.log(user);
-                console.log(profile);
-                
                 this.userSubject.next(user);
             })
         })
