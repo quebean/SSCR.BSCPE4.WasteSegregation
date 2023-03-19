@@ -12,7 +12,7 @@
             </thead>
             <tbody>
                 <tr class="text-center" *ngFor="let transaction of transactions">
-                    <td>{{((transaction.metal * .25)+(transaction.plastic * .15)+(transaction.paper * .05)) | currency:'PHP':'symbol'}}</td>
+                    <td>{{((transaction.metal * .05)+(transaction.plastic * .05)+(transaction.paper * .05)).toFixed(2)}}</td>
                     <td>{{transaction.metal}}</td>
                     <td>{{transaction.plastic}}</td>
                     <td>{{transaction.paper}}</td>

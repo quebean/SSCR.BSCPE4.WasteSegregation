@@ -27,7 +27,7 @@ export class SettingsComponent implements OnInit{
   ngOnInit(): void {
     this.spinner.show();
     this.userForm = this.formBuilder.group({
-      tagId: ['', [Validators.required, Validators.pattern("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")]],
+      tagId: ['', [Validators.required]],
     });
     this.authService.user$.subscribe((profile) => {
       this.profile = profile;

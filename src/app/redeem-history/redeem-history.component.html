@@ -1,7 +1,7 @@
 <div class="rounded bg-white m-4 text-center p-4 shadow">
     <div>
         <h1 style="font-size: 60px;"><i class="bi bi-cash-coin"></i></h1>
-        <h2 style="font-size: 40px;">{{(user ? user.rewardBalance : 0) | currency:'PHP':'symbol'}}</h2>
+        <h2 style="font-size: 40px;">{{(user ? user.rewardBalance.toFixed(2) : 0)}}</h2>
     </div>
     <hr class="text-success">
     <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Redeem</button>
@@ -14,7 +14,7 @@
                 <div class="rounded bg-white p-2 shadow"> 
                     <div class="d-flex justify-content-between px-2">
                         <div>
-                            <span class="d-block redeemPoints">{{redeem.amount | currency:'PHP':'symbol'}}</span>
+                            <span class="d-block redeemPoints">{{redeem.amount.toFixed(2)}}</span>
                             <span class="d-block redeemDates">{{redeem.createdAt | date : 'medium' }}</span>
                             <span class="d-block">{{redeem.description}}</span>
                         </div>
