@@ -51,7 +51,7 @@ export class SettingsComponent implements OnInit{
     if (!this.user && this.userForm.valid) {
       let newUser = {
         subjectId: this.profile.sub,
-        tagId: this.userForm.value.tagId,
+        tagId: this.userForm.value.tagId.toUpperCase(),
         rewardBalance: 0
       }
       this.dataService.CreateUser(newUser).subscribe((user) => {
